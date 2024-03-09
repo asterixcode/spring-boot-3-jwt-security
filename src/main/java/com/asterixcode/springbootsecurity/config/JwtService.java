@@ -34,15 +34,26 @@ public class JwtService {
     return Jwts.builder()
         .claims(extraClaims)
         // the unique identifier for the user (email in this case), but in Spring it's always called `username`
-        .subject(
-            userDetails
-                .getUsername())
+        .subject(userDetails.getUsername())
         // the time the token was issued, helping to calculate the expiration time and if the token is still valid
         .issuedAt(new Date(System.currentTimeMillis()))
         // expiration time of the token (1 hour in this case)
         .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // up to you to decide the value
         .signWith(getSignInKey(), Jwts.SIG.HS256)
         .compact();
+  }
+
+  public boolean isTokenValid(String token, UserDetails userDetails) {
+    final String username = extractUsername(token);
+    return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+  }
+
+  private boolean isTokenExpired(String token) {
+    return extractExpiration(token).before(new Date());
+  }
+
+  private Date extractExpiration(String token) {
+    return extractClaim(token, Claims::getExpiration);
   }
 
   private Claims extractAllClaims(String token) {
