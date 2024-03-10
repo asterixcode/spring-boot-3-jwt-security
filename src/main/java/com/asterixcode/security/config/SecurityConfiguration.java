@@ -34,7 +34,7 @@ public class SecurityConfiguration {
               // list of URLs that are whitelisted:
               authorizeHttp.requestMatchers("api/v1/auth/**").permitAll();
               authorizeHttp.requestMatchers("/error").permitAll();
-              // any other URL should be authenticated:
+              // any other URL, user should be authenticated: (secured by default)
               authorizeHttp.anyRequest().authenticated();
             })
         // Filter implement as "once per request filter" = every request should be authenticated.
