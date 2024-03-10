@@ -32,9 +32,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     final String authorizationHeader = request.getHeader("Authorization");
     final String jwt;
     final String userEmail;
+    // 1. Decide whether the filter should process the request:
     if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+      // Trust the filter chain to do the right thing.
       filterChain.doFilter(request, response);
     } else {
+      // 2. Authenticate
       jwt = authorizationHeader.substring(7);
       userEmail = jwtService.extractUsername(jwt);
       // skip if email is null and user is not authenticated
@@ -54,6 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
           SecurityContextHolder.getContext().setAuthentication(authToken);
         }
       }
+      // 3. Invoke the 'rest' of the filter chain
       filterChain.doFilter(request, response);
     }
   }
