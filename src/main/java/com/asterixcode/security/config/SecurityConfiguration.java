@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -37,6 +38,8 @@ public class SecurityConfiguration {
               // any other URL, user should be authenticated: (secured by default)
               authorizeHttp.anyRequest().authenticated();
             })
+        // add default login page:
+        .formLogin(Customizer.withDefaults())
         // Filter implement as "once per request filter" = every request should be authenticated.
         // This means that the server doesn't store the authentication/session state = Stateless.
         .sessionManagement(
