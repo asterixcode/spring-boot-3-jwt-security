@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.user;
+package com.asterixcode.security.user;
 
 import jakarta.persistence.*;
 import lombok.*;

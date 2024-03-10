@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.auth;
+package com.asterixcode.security.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

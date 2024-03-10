@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.config;
+package com.asterixcode.security.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.demo;
+package com.asterixcode.security.demo;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

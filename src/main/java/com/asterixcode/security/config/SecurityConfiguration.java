@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.config;
+package com.asterixcode.security.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

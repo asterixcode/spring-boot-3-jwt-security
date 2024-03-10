@@ -1,10 +1,10 @@
-package com.asterixcode.springbootsecurity;
+package com.asterixcode.security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootSecurityApplicationTests {
+class SpringSecurityApplicationTests {
 
     @Test
     void contextLoads() {

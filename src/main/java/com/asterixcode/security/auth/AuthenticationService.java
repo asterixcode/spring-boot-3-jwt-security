@@ -1,9 +1,9 @@
-package com.asterixcode.springbootsecurity.auth;
+package com.asterixcode.security.auth;
 
-import com.asterixcode.springbootsecurity.config.JwtService;
-import com.asterixcode.springbootsecurity.user.Role;
-import com.asterixcode.springbootsecurity.user.User;
-import com.asterixcode.springbootsecurity.user.UserRepository;
+import com.asterixcode.security.config.JwtService;
+import com.asterixcode.security.user.Role;
+import com.asterixcode.security.user.User;
+import com.asterixcode.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

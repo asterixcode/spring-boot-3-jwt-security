@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.user;
+package com.asterixcode.security.user;
 
 import org.springframework.data.repository.ListCrudRepository;
 

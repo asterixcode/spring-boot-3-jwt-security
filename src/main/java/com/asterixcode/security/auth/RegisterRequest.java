@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.auth;
+package com.asterixcode.security.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

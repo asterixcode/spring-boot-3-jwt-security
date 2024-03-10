@@ -1,4 +1,4 @@
-package com.asterixcode.springbootsecurity.config;
+package com.asterixcode.security.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
