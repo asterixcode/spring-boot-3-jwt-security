@@ -48,7 +48,8 @@ public class SecurityConfiguration {
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         // Tell Spring which authentication provider to use:
         .authenticationProvider(authenticationProvider)
-        // Add and set Spring to use the JWT filter before the UsernamePasswordAuthenticationFilter:
+        // Register your filters in the security filter chain:
+        // 1- register the JWT filter and set it before the UsernamePasswordAuthenticationFilter:
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
