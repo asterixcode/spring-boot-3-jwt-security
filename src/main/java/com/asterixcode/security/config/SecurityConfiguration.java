@@ -24,28 +24,27 @@ public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-            // Disable CSRF verification as we are using JWT.
-            .csrf(AbstractHttpConfigurer::disable)
-            // What are the URLs and Paths that need to be secured,
-            // and what is the white list (doesn't require any authentication or authorization token).
-            // Example of white listing: /login, /register, /forgot-password, /reset-password
-            .authorizeHttpRequests(
-            authorizeRequests ->
-                authorizeRequests
-                        // list of URLs that are whitelisted
-                        .requestMatchers("api/v1/auth/**").permitAll()
-                        // any other URL should be authenticated
-                        .anyRequest().authenticated()
-            )
+        // Disable CSRF verification as we are using JWT:
+        .csrf(AbstractHttpConfigurer::disable)
+        // What are the URLs/Paths that are allowed to be accessed without any authentication (white list),
+        // and any other URL (request) should be authenticated.
+        // Example of white listing paths: /login, /register, /forgot-password, /reset-password
+        .authorizeHttpRequests(
+            authorizeHttp -> {
+              // list of URLs that are whitelisted:
+              authorizeHttp.requestMatchers("api/v1/auth/**").permitAll();
+              // any other URL should be authenticated:
+              authorizeHttp.anyRequest().authenticated();
+            })
         // Filter implement as "once per request filter" = every request should be authenticated.
         // This means that the server doesn't store the authentication/session state = Stateless.
         .sessionManagement(
             sessionManagement ->
-                    // Set Spring to create a new session for every request.
+                // Set Spring to create a new session for every request:
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        // Tell Spring which authentication provider to use.
+        // Tell Spring which authentication provider to use:
         .authenticationProvider(authenticationProvider)
-        // Add and set Spring to use the JWT filter before the UsernamePasswordAuthenticationFilter.
+        // Add and set Spring to use the JWT filter before the UsernamePasswordAuthenticationFilter:
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
