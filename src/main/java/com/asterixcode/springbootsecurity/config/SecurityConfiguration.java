@@ -33,7 +33,7 @@ public class SecurityConfiguration {
             authorizeRequests ->
                 authorizeRequests
                         // list of URLs that are whitelisted
-                        .requestMatchers("").permitAll()
+                        .requestMatchers("api/v1/auth/**").permitAll()
                         // any other URL should be authenticated
                         .anyRequest().authenticated()
             )
