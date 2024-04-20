@@ -1,16 +1,27 @@
 spring:
+
   datasource:
     url: jdbc:postgresql://localhost:5432/jwt_security
     username:
     password:
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 1
+      connection-timeout: 30000 # 30 seconds
+      connection-test-query: select 1
+      validation-timeout: 6000 # 6 seconds
+      idle-timeout: 600000 # 10 minutes
+      max-lifetime: 1800000 # 30 minutes
+      pool-name: SecurityDBHikariCP
+
   jpa:
+    open-in-view: false
+    show-sql: false
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: validate
     properties:
       hibernate:
-        format_sql: true
-        use_sql_comments: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+        generate_statistics: false
+        use_sql_comments: false
